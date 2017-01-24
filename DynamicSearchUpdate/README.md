@@ -1,14 +1,14 @@
 # Dynamic Search & Update
 Dynamic update of a `JList` component, made just for *educational purposes*.
 
-## What's is it?
+## What is it?
 Search a Person object by name through a `JTextField` user input.
 
 ## Getting Started
 Just: `$ java DynamicSearchUpdate`
 
 Also, you can
-delete files: `$ make clean`
+delete compiled files: `$ make clean`
 
 and recompile: `$ make`
 
