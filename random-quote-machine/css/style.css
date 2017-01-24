@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body{
+  font-size: 65.2%;
+  padding: 0;
+  marign: 0;
+  background-color: LightYellow;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 2.6em;
+ /* background-color: papayawhip;*/
+  margin: 0 auto;
+}
+
+body h1{
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 2em;
+  word-spacing: 0.8em;
+  letter-spacing: 0.4em;
+  text-align: center; 
+  text-shadow: 0 2px 2px rgba(165,  42,  42, 0.5);
+}
+
+body hr{
+  border-top: 3px double #8c8b8b;
+  width:80%;
+  margin: 10px auto;  
+}
+
+.quote-box{
+  /*background-color: powderblue;*/
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 1.2em;
+}
+.quote-space{
+  /*background-color: gray;*/
+  font-size: 1.6em;
+  margin-top: 28px;
+  margin-bottom: 0.8em;
+  box-shadow: 0 5px 10px rgba(165,  42,  42, 0.5);
+  padding: 12px 8px 12px 8px;
+}
+
+.quote-space i{
+  float: left;
+}
+.author-space{
+  /*background-color: yellow;*/
+  font-size: 1.0em;
+  font-weight: bold;
+  text-align: right;  
+  padding: 8px 8px 8px 8px;
+}
+.buttons-box{
+   /*background-color: goldenrod;*/
+}
+.nqbutton{
+  background-color: brown;
+  border: none;
+  color: white;
+  font-weight: bold;
+}
+.nqbutton:hover{
+  background-color: Chocolate;
+  color: white;
+}
+
+.nqbutton:active:focus{
+   color: white;
+   background-color: Peru;
+   outline-color: Chocolate;
+}
+.nqbutton:focus{
+  background-color: brown;
+  color:white;
+  outline-color:Chocolate;
+}
+
+#twitter-button{
+  color: SkyBlue;
+}
+
+.copyright{
+  font-size: 0.75em;
+  margin-top: 20px;
+}
+
+.copyright a{
+  color: Chocolate;
+  background-color: transparent;
+  text-decoration: none;  
+}
+
+.copyright a:hover{
+  color: Gainsboro;
+  background-color: rgba(0,0,0, 0.8);  
+}
+
+.copyright i{
+  padding-left: 3px;
+  padding-right: 4px;
+}
