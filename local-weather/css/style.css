@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Raleway');
+
+body{
+  padding: 0;
+  font-size: 65.2%;
+  background-color: CadetBlue;
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+
+body h1{
+  font-family: 'Amatic SC', cursive;
+  font-size: 10em;  
+  color: BlanchedAlmond;
+  padding-top: 50px;
+  text-align: center;
+  text-shadow: 0 3px 2px rgba(0,0,0,0.5);
+  letter-spacing: 8px;
+}
+
+.wrapper{
+  font-family: 'Raleway', sans-serif;
+}
+
+.main-info-box{ 
+  font-size: 2em;
+  margin-top: 20px;  
+  margin-bottom: 20px;
+}
+
+.temperature{
+  font-size: 3em;
+}
+
+#number-tempe{
+   font-weight: bold;
+}
+.user-location{
+  font-size: 1.8em;
+}
+
+.button-area{
+  font-size: 1.6em;  
+}
+
+.custon-button{
+  margin: 10px 10px 10px 10px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0,0.5);  
+  background-color: BlanchedAlmond;
+  border: none;
+  color: DarkCyan;
+  font-weight: bold;  
+}
+
+.copyright{
+  font-size: 2em;
+  margin-top: 100px;
+  padding-bottom: 30px;  
+}
+
+.copyright a{
+  color: BlanchedAlmond;
+  background-color: transparent;
+  text-decoration: none;  
+  text-shadow: 0 1px 3px rgba(0,0,0,0.9);  
+}
+
+.copyright a:hover{
+  color: Gainsboro;
+  background-color: rgba(0,0,0, 0.8);  
+}
+
+.copyright i{
+  padding-left: 3px;
+  padding-right: 4px;
+}
+
+

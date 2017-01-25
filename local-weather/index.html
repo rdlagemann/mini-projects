@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+  <meta charset="UTF-8">
+  <title>Local Weather - FreeCodeCamp</title>
+  <script src="https://use.fontawesome.com/ac9f2086d3.js"></script>  
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="wrapper">
+     
+     <h1>Local<i class="fa fa-sun-o"></i>Weather</h1>
+
+     <div class="row">  
+
+        <div class="col-xs-12 main-info-box text-center">
+
+         <div class="temperature"><span id="number-tempe"></span><span id="loading"></span>°<span id="format-tempe">C</span></div>
+         <div class="user-location"><span id ="user-city"></span>, <span id="user-country"></span></div>
+         <div class="icon-tempe"><img id="i-tempe" src="#" alt="icon"></div>
+        
+       </div>
+
+       <div class="row">
+         <div class="col-xs-12 button-area text-center">
+
+          <button class="custon-button btn btn-default" onclick="fToC()">Celsius</button>
+          <button class="custon-button btn btn-default" onclick="cToF()">Fahrenheit</button>    
+
+         </div>
+       </div>     
+
+     </div>
+        <div class="copyright text-center">
+        by <a href="https://github.com/rdlagemann" title="github profile" target="_blank"><i class = "fa fa-github"></i><strong>rdlagemann</strong></a>
+      </div>    
+     
+   </div>
+  </div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+  <script src="js/index.js"></script>
+
+</body>
+</html>
