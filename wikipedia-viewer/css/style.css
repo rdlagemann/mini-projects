@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway|Roboto+Slab:300,400');
+body {
+    background-color: hsla(243, 35%, 15%, 1);
+    font-size: 65.2%;
+}
+
+.wv-title {
+    padding: 50px;
+    display: inline-block;
+}
+
+.wv-title h1 {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 300;
+    color: hsla(243, 5%, 85%, 1);
+    word-spacing: .1em;
+    letter-spacing: .25em;
+}
+
+.wv-title h1:hover {
+    transition: text-shadow 2s ease-out;
+    text-shadow: 0 0 10px hsla(243, 25%, 85%, 1);
+    cursor: default;
+}
+
+.wv-title i {
+    color: Coral;
+}
+
+.wv-title i:hover {
+    transform: rotate(360deg);
+    transition: 2.5s;
+    color: LightSalmon;
+}
+
+.main-search ul li {}
+
+.search {
+    position: relative;
+    display: inline-bock;
+    background-color: hsla(243, 25%, 90%, 1);
+    font-size: 2.6em;
+    line-height: 36px;
+    border: 1px solid hsla(243, 25%, 85%, 1);
+    border-top-color: hsla(243, 25%, 70%, 1);
+    border-radius: 1px;
+}
+
+ul.ui-autocomplete {
+    background-color: hsla(243, 25%, 90%, 1);
+    font-size: 2em;
+    list-style-type: none;
+    color: hsla(243, 35%, 15%, 1);
+}
+
+ul.ui-autocomplete li:hover {
+    background-color: lightsalmon;
+    color: white;
+    cursor: default;
+}
+
+ul.ui-menu {
+    width: 50%;
+    padding-left: 1px;
+}
+
+ul.ui-autocomplete li:before {
+    padding-left: 1px;
+}
+
+.ui-helper-hidden-accessible {
+    display: none;
+}
+
+.res-cell a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.res-cell a:hover {
+    color: Coral;
+}
+
+.res-cell {
+    margin: 10px;
+}
+
+.main-search input {
+    width: 80%;
+    max-width: 614px;
+}
+
+::-webkit-input-placeholder {
+    color: hsla(243, 25%, 50%, 1);
+}
+
+.random-area {
+    padding: 15px;
+}
+
+#rbutton {
+    color: Coral;
+    background-color: transparent;
+}
+
+#rbutton:hover {
+    transition: color .5s linear;
+    color: LightSalmon;
+}
+
+.res-cell {
+    color: hsla(243, 25%, 85%, 1);
+    background-color: transparent;
+    border: 1px solid Moccasin;
+    border-top-color: Coral;
+    border-bottom-color: Moccasin;
+    text-align: left;
+    padding: 5px 5px 5px 5px;
+}
+
+.res-cell h2 {
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+.res-cell p {
+    font-size: 2.6em;
+}

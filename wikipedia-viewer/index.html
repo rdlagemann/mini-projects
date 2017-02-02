@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>WikipediaViewer - FreeCodeCamp</title>
+    <script src="https://use.fontawesome.com/ac9f2086d3.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+
+    <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body>
+    <div class="container text-center">
+        <div class="wv-title text-center">
+            <h1>wikipedia <i class="fa fa-eye fa-2x"></i> viewer</h1>
+        </div>
+        <div class="main-search text-center">
+            <input class="search ui-autocomplete-input" id="search-field" placeholder=" Type your search" autocomplete="on" />
+            <div class="random-area">
+                <a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">
+                    <button id="rbutton" class="btn btn-submit" alt="random" title="Load random content"><i class="fa fa-random fa-2x"></i></button></a>
+            </div>
+        </div>
+        <div class="results-area" id="res-area">
+        </div>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+
+</html>
