@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Open+Sans');
 
 body{
   font-size: 65.2%;
@@ -25,14 +24,14 @@ body h1{
   font-size: 2em;
   word-spacing: 0.8em;
   letter-spacing: 0.4em;
-  text-align: center; 
+  text-align: center;
   text-shadow: 0 2px 2px rgba(165,  42,  42, 0.5);
 }
 
 body hr{
   border-top: 3px double #8c8b8b;
   width:80%;
-  margin: 10px auto;  
+  margin: 10px auto;
 }
 
 .quote-box{
@@ -57,7 +56,7 @@ body hr{
   /*background-color: yellow;*/
   font-size: 1.0em;
   font-weight: bold;
-  text-align: right;  
+  text-align: right;
   padding: 8px 8px 8px 8px;
 }
 .buttons-box{
@@ -97,12 +96,12 @@ body hr{
 .copyright a{
   color: Chocolate;
   background-color: transparent;
-  text-decoration: none;  
+  text-decoration: none;
 }
 
 .copyright a:hover{
   color: Gainsboro;
-  background-color: rgba(0,0,0, 0.8);  
+  background-color: rgba(0,0,0, 0.8);
 }
 
 .copyright i{
