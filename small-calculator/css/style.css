@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+body {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.5em;
+  
+   background-color: #242424;
+}
+.main-frame {
+  min-width: 300px;
+}
+
+.calc-display {
+  color: DarkSeaGreen;  
+  text-align: right;
+  font-weight: bold;  
+  padding: 10px;
+  
+}
+
+.calc-display__history {
+  color: DarkSlateGray;
+  font-size: .7em;
+}
+
+.calc-frame__keyboard {
+  color: white;
+}
+
+.calc-frame__keyboard table {
+  width: 100%;
+  padding: 10px;
+}
+
+.calc-frame__keyboard td {
+  padding: 5px 10px 5px 10px;
+  text-align: center;
+}
+.calc-frame__keyboard td:hover {
+  color: rgba(255,255,255, 0.5);
+  cursor: pointer;
+}
+
+.keyboard__operator{
+  color: LightCoral;
+}
