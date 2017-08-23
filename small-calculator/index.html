@@ -2,54 +2,59 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>[WIP] freeCodeCamp - Calculator</title> 
-  
-      <link rel="stylesheet" href="css/style.css">  
+  <title>[WIP] freeCodeCamp - Calculator</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://use.fontawesome.com/ac9f2086d3.js"></script>  
+
 </head>
 
 <body>
   <div class="main-frame">
-  <div class="calc-display">
-    <div class="calc-display__main">0
-    </div>  
-    <div class="calc-display__history">
+    <div class="calc-display">
+    <div id ="displayHistory" class="calc-display__history">
     </div>
-    
-  </div>
-  <div class="calc-frame__keyboard">
-    <table>
-      <tr>
-        <td colspan="2" style="text-align:left; font-size:.9em;">clear</td>
-         <td class="keyboard__operator">+</td>
-         <td class="keyboard__operator">-</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-        <td class="keyboard__operator">*</td>       
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>5</td>
-        <td>6</td>
-        <td class="keyboard__operator">/</td>       
-      </tr>
-      <tr>
-        <td>7</td>
-        <td>8</td>
-        <td>9</td>     
-        <td rowspan="2" class="keyboard__operator">=</td>  
-      </tr>
-      <tr>        
-        <td colspan="3">0</td>
-       
-      </tr>
+      <div id="displayMain" class="calc-display__main">0
+      </div>        
+      
+    </div>
+    <div class="calc-frame__keyboard">
+      <table>
+        <tr>
+          <td colspan="2" class="keyboard__operator" style="text-align:left; font-size:.9em;">clear</td>
+           <td class="keyboard__operator">+</td>
+           <td class="keyboard__operator">-</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td class="keyboard__operator">x</td>       
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>5</td>
+          <td>6</td>
+          <td class="keyboard__operator">/</td>       
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>8</td>
+          <td>9</td>     
+          <td rowspan="2" class="keyboard__operator">=</td>  
+        </tr>
+        <tr>        
+          <td colspan="3">0</td>
+         
+        </tr>
 
-    </table>
-  </div>
-  
+      </table>
+    </div>  
 </div>
+
+ <div class="copyright">
+    by <a href="https://github.com/rdlagemann" title="github profile" target="_blank"><i class = "fa fa-github"></i>
+    <strong>rdlagemann</strong></a>
+  </div>
   
     <script src="js/index.js"></script>
 
