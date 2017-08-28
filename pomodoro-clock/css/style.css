@@ -57,3 +57,14 @@ h1 {
 .long-break-btn{
 	background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
 }
+
+
+.settings-area {
+	display: flex;
+	padding: 15px;
+	border: 1px solid black;
+}
+
+.setting-value {
+	margin: 15px;
+}
