@@ -1,86 +1,114 @@
 (function () {
   /* macros */
   const SECONDS = 60;
-  var pomodoro_time = 1,
-      break_time = 2,
-      long_break = 3;
 
-  /* clock object */
+  var pomodoroValue = document.getElementById('pomodoroValue').innerText,
+      breakValue = document.getElementById('breakValue').innerText,
+      longBreakValue = document.getElementById('longBreakValue').innerText;
+
+  // clock object
   var clock = {
-    minutes: document.getElementById('minutes'),
-    seconds: document.getElementById('seconds'),
-    intervalID: false,
-    running: false,
+        minutes: document.getElementById('minutes'),
+        seconds: document.getElementById('seconds'),
+        intervalID: false,
+        running: false,
 
-    in_seconds: {
-      setted: pomodoro_time * SECONDS,
-      current: pomodoro_time * SECONDS
-    },
-    format: function () {
-      if(seconds.innerText.length === 1) {
-        seconds.innerText = "0" + seconds.innerText;
-      }
+        in_seconds: {
+          setted: 0,
+          current: 0
+        },
 
-      if(minutes.innerText.length === 1) {
-        minutes.innerText = "0" + minutes.innerText;
-      }
-    },
+        format: function () {
+          if(seconds.innerText.length === 1) {
+            seconds.innerText = "0" + seconds.innerText;
+          }
 
-    update: function () {
-      this.minutes.innerText = Math.floor(this.in_seconds.current / 60);
-      this.seconds.innerText = (this.in_seconds.current % 60).toString();
-      this.format();  
-      
-    },
+          if(minutes.innerText.length === 1) {
+            minutes.innerText = "0" + minutes.innerText;
+          }
+        },
 
-    set: function (timerType) {
-      this.in_seconds.setted = timerType * SECONDS;
-    },
+        update: function () {
+          this.minutes.innerText = Math.floor(this.in_seconds.current / 60);
+          this.seconds.innerText = (this.in_seconds.current % 60).toString();
+          this.format();  
+          
+        },
 
-    reset: function () {
-      this.in_seconds.current = this.in_seconds.setted;
-      this.intervalID = false;
-      this.running = false;
-    }
+        set: function (timerType) {
+          this.in_seconds.setted = Number(timerType) * SECONDS;
+          this.in_seconds.current = Number(timerType) * SECONDS;
+        },
 
-  };
+        reset: function () {
+          this.in_seconds.current = this.in_seconds.setted;
+          this.intervalID = false;
+          this.running = false;
+          this.update();
+        }
+
+    };
 
   /* preset */
-  clock.set(pomodoro_time);
+  clock.set(pomodoroValue);
   clock.update();
 
   /* set buttons (yep hard coded) */
-  let pomodoroButton = document.getElementById('pomodoroButton').onclick = runTimer,
-      breakButton = document.getElementById('breakButton').onclick = runTimer,
-      longBreakButton = document.getElementById('longBreakButton').onclick = runTimer;
- 
+  document.getElementById('pomodoroButton').onclick = startAndRunTimer;
+  document.getElementById('breakButton').onclick = startAndRunTimer;
+  document.getElementById('longBreakButton').onclick = startAndRunTimer;
+  document.getElementById('stopButton').onclick = stopTimer;
+  pausePlayButton = document.getElementById('pauseButton');
+  pausePlayButton.onclick = pauseTimer;
+
+  /* settings control */
+  var decrements = Array.from(document.querySelectorAll('.dec')),
+      increments = Array.from(document.querySelectorAll('.inc'));
 
 
-  function runTimer() {
-    let timerType = '',
-        buttonID = this.id;
+  decrements.forEach( function(element) {
+    element.onclick = decrementValue;
+  });
 
-    console.log(buttonID);
+  increments.forEach( function(element) {
+    element.onclick = incrementValue;
+  });
 
-    if (buttonID === 'pomodoroButton') {
-      timerType = pomodoro_time;
-    }
-    else if (buttonID === 'breakButton') {
-      timerType = break_time;
-    }
-    else if (buttonID === 'longBreakButton') {
-      timerType = long_break;
-    }
 
-    if(clock.intervalID){
+  /* 
+  
+  FUNCTIONS 
+
+  */
+
+  function pauseTimer() {
+    if (clock.intervalID) {
       clearInterval(clock.intervalID);
-      console.log('clearInterval')
+      clock.intervalID = false;
+
+    }
+    else {
+      runTimer();
+    }
+    
+    this.classList.toggle('fa-pause');
+    this.classList.toggle('fa-play');
+
+  }
+
+
+  function stopTimer () {
+    if (clock.intervalID) {
+      clearInterval(clock.intervalID);
+    }
+    clock.reset();
+  }
+
+  function runTimer () {
+    if(clock.intervalID) {
+       clearInterval(clock.intervalID);
     }
 
-    clock.set(timerType);
-    clock.reset();
-    //this.disabled = true;   
-    
     clock.intervalID = setInterval(function () {
       clock.in_seconds.current -= 1;
       clock.update();
@@ -93,10 +121,85 @@
       }
       
        // TODO: debug in 100ms, change to 1000ms
-    }, 100);  
+    }, 1000);  
+  }
 
-}
+
+  function startAndRunTimer () {
+    let timerType = '',
+        buttonID = this.id;
+
+    pausePlayButton.classList.remove('fa-play');
+    pausePlayButton.classList.add('fa-pause');
+
+    console.log(buttonID);
+
+    if (buttonID === 'pomodoroButton') {
+      timerType = pomodoroValue;
+    }
+    else if (buttonID === 'breakButton') {
+      timerType = breakValue;
+    }
+    else if (buttonID === 'longBreakButton') {
+      timerType = longBreakValue;
+    }
+    else {
+      // default to prevent bug
+      timerType = pomodoroValue;
+    }
+
+    if(clock.intervalID){
+      clearInterval(clock.intervalID);
+      console.log('clearInterval')
+    }
+
+    clock.set(timerType);
+    clock.reset();
+
+    runTimer();
+  }  
   
+
+  function incrementValue () {
+    if (!clock.intervalID) {
+     var target = this.previousElementSibling,
+          number = Number(target.innerText);
+
+      number =  (number + 1) % 40;
+      target.innerText = number;
+
+      switch(target.id) {
+        case 'pomodoroValue':
+          pomodoroValue = number;
+          break;
+        case 'breakValue':
+          breakValue = number;
+          break;
+        case 'longBreakValue':
+          longBreakValue = number;
+          break;
+      }
+
+    }
+
+  }
+
+  function decrementValue () {
+    if(!clock.intervalID) {
+      var target = this.nextElementSibling,
+          number = Number(target.innerText);
+
+      number -= 1;
+
+      if (number <= 0) {
+        number = 0;
+      }
+
+      target.innerText = number;
+    }
+
+  }
+
 
 })()
 

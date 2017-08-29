@@ -5,7 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Pomodoro Clock</title>
 
-	<link rel="stylesheet" href="css/style.css">
+	<!-- css with autoprefixer -->
+	<link rel="stylesheet" href="css/build/style.css">
 	<script src="https://use.fontawesome.com/ac9f2086d3.js"></script>  
 
 </head>
@@ -16,32 +17,51 @@
 
 <div class="main-container">
 
+<div class="button-area" unselectable="on" onselectstart="return false;" onmousedown="return false;">
+
+		<div class="setting-area pomodoro-area">
+			<span class="dec fa fa-toggle-down"></span>
+			<span id="pomodoroValue">25</span>
+			<span class="inc fa fa-toggle-up"></span>
+		
+			<input id="pomodoroButton" class="clock-btn pomodoro-btn" type="button" name="start-button" value="pomodoro">	
+		</div>		
+		
+
+		<div class="setting-area break-area">
+			<span class="dec fa fa-toggle-down"></span>
+			<span id="breakValue">5</span>
+			<span class="inc fa fa-toggle-up"></span>
+			<input id="breakButton" class="clock-btn break-btn" type="button" name="start-button" value="short break">			
+		</div>
+		
+		<div class="setting-area break-area">
+			<span class="dec fa fa-toggle-down"></span>
+			<span id="longBreakValue">10</span>
+			<span class="inc fa fa-toggle-up"></span>
+			<input id="longBreakButton" class="clock-btn break-btn" type="button" name="start-button" value="long break">				
+		</div>
+				
+	</div>
+
 	<div class="clock__frame">
 		<span id="minutes"></span>:<span id="seconds"></span>
 	</div>
-	<div class="button-area">
-		<input id="pomodoroButton" class="clock-btn pomodoro-btn" type="button" name="start-button" value="pomodoro">
-		<input id="breakButton" class="clock-btn short-break-btn" type="button" name="start-button" value="short break">
-		<input id="longBreakButton" class="clock-btn long-break-btn" type="button" name="start-button" value="long break">	
-	</div>
-	<div class="settings-area">
-		<div class="setting-value">
-			<h3>pomodoro</h3>
-				<span>-</span> 25 <span>+</span>
-		</div>
 
-		<div class="setting-value">
-			<h3>short break</h3>
-		5</div>
-		
-		<div class="setting-value">
-		<h3>long break</h3>
-		10</div>
+	<div class="control-area">
+		<span id="stopButton" class="control-btn fa fa-stop" aria-hidden="true"></span>
+		<span id="pauseButton" class="control-btn fa fa-play" aria-hidden="true"></span>		
 	</div>
-	
 
-	
+
+	<img src="img/doit.png" alt="just do it!">
+
+	<footer class="copyright">
+		by <a href="http://github.com/rdlagemann" class="fa fa-github"> rdlagemann</a>		
+	</footer>
+
 </div>
+
 
 
 
