@@ -3,6 +3,7 @@ html {
 	height: 100%;
 	font-family: "Arial", sans-serif;
 	background-color: white;
+	overflow: hidden;
 }
 
 h1 {
@@ -13,15 +14,25 @@ h1 {
 
 .main-container{
 	text-align: center;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 }
 
 .main-container img{
 	width: 200px;
 	height: auto;
+	overflow: hidden;
 }
 
 
@@ -29,22 +40,27 @@ h1 {
 	font-size: 60px;
 	font-weight: bold;
 	padding: 5px;
-	border-radius: 3px;
-	/*text-shadow: 1px 1px 1px #fa709a;*/
-	
+	border-radius: 3px;	
 }
 
 .button-area{
 	margin: 20px;
-}
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;	
 
-.ply {
-	display: inline-block;
 }
 
 .clock-btn{
-	width: 100px;
-	height: 50px;
+	color: #202020;
+	font-family: 10px;
 	padding: 10px;
 	border-style: none;
 	border-radius: 3px;
@@ -56,43 +72,59 @@ h1 {
 .clock-btn:hover{
 	cursor: pointer;
 	color: white;
+	background-image: -webkit-gradient(linear, left bottom, left top, from(#202020), to(#202020));
+	background-image: -webkit-linear-gradient(bottom, #202020 0%, #202020 100%);
+	background-image: -o-linear-gradient(bottom, #202020 0%, #202020 100%);
 	background-image: linear-gradient(to top, #202020 0%, #202020 100%);
+	-webkit-transition: all .3s ease-out;
+	-o-transition: all .3s ease-out;
 	transition: all .3s ease-out;
 }
 
 .setting-area {
 	text-align: center;
 	display: inline-block;
-	border: 1px solid gray;
+	border: 1px solid rgba(0,0,0,0.2);
 	border-radius: 5px;
 	color: rgba(0,0,0, 0.3);
+	margin: 2px;
 }
 
-.pomodoro-area {	
-	width: 200px;
-}
-
-.break-area {
-	width: 100px;
-}
 .pomodoro-btn{
-	color: #202020;	
-	width: 200px;	
+	display: block;		
+	width: auto;
+	height: auto;	
+	background-image: -webkit-gradient(linear, left top, right top, from(#fa709a), to(#fee140));	
+	background-image: -webkit-linear-gradient(left, #fa709a 0%, #fee140 100%);	
+	background-image: -o-linear-gradient(left, #fa709a 0%, #fee140 100%);	
 	background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
 }
 
 .break-btn{
+	width: auto;
+	height: auto;
+	font-size: 12px;
+	background-image: -webkit-linear-gradient(330deg, #84fab0 0%, #8fd3f4 100%);
+	background-image: -o-linear-gradient(330deg, #84fab0 0%, #8fd3f4 100%);
 	background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
 
 
 .control-area {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 	margin: 5px;
 	border: 1px solid gray;
 	border-radius: 16px;
-	user-select: none;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+	color: gray;
 }
 
 .control-btn {;
@@ -101,6 +133,13 @@ h1 {
 	margin: 5px;
 
 	cursor: pointer;
+}
+
+.control-btn:hover{
+	color:#202020;
+	-webkit-transition: color .3s ease-out;
+	-o-transition: color .3s ease-out;
+	transition: color .3s ease-out;
 }
 
 .dec, 
@@ -136,4 +175,3 @@ h1 {
 .copyright a:hover {
 	color: gray;
 }
-

@@ -76,9 +76,7 @@
 
 
   /* 
-  
   FUNCTIONS 
-
   */
 
   function pauseTimer() {
@@ -102,12 +100,16 @@
       clearInterval(clock.intervalID);
     }
     clock.reset();
+
+    this.nextElementSibling.classList.remove('fa-pause');
+    this.nextElementSibling.classList.add('fa-play');
   }
 
   function runTimer () {
     if(clock.intervalID) {
        clearInterval(clock.intervalID);
     }
+
 
     clock.intervalID = setInterval(function () {
       clock.in_seconds.current -= 1;

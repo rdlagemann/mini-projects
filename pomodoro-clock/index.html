@@ -4,9 +4,11 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Pomodoro Clock</title>
+	<link rel="icon" href="img/favicon.png"/>
 
 	<!-- css with autoprefixer -->
-	<link rel="stylesheet" href="css/build/style.css">
+	<link rel="stylesheet" href="css/style.css">
+	<!-- font awesome cdn -->
 	<script src="https://use.fontawesome.com/ac9f2086d3.js"></script>  
 
 </head>
@@ -19,28 +21,32 @@
 
 <div class="button-area" unselectable="on" onselectstart="return false;" onmousedown="return false;">
 
-		<div class="setting-area pomodoro-area">
+		<div class="setting-area">
 			<span class="dec fa fa-toggle-down"></span>
 			<span id="pomodoroValue">25</span>
 			<span class="inc fa fa-toggle-up"></span>
 		
-			<input id="pomodoroButton" class="clock-btn pomodoro-btn" type="button" name="start-button" value="pomodoro">	
+			<div id="pomodoroButton" class="clock-btn pomodoro-btn">pomodoro</div>	
 		</div>		
 		
+		<div class="button-area__subdiv">
+			<div class="setting-area">
+				<span class="dec fa fa-toggle-down"></span>
+				<span id="breakValue">5</span>
+				<span class="inc fa fa-toggle-up"></span>
+				<div id="breakButton" class="clock-btn break-btn">short break</div>			
+			</div>
+			
+			<div class="setting-area break-area">
+				<span class="dec fa fa-toggle-down"></span>
+				<span id="longBreakValue">10</span>
+				<span class="inc fa fa-toggle-up"></span>
+				<div id="longBreakButton" class="clock-btn break-btn">long break</div>				
+			</div>
+			
+		</div>
 
-		<div class="setting-area break-area">
-			<span class="dec fa fa-toggle-down"></span>
-			<span id="breakValue">5</span>
-			<span class="inc fa fa-toggle-up"></span>
-			<input id="breakButton" class="clock-btn break-btn" type="button" name="start-button" value="short break">			
-		</div>
 		
-		<div class="setting-area break-area">
-			<span class="dec fa fa-toggle-down"></span>
-			<span id="longBreakValue">10</span>
-			<span class="inc fa fa-toggle-up"></span>
-			<input id="longBreakButton" class="clock-btn break-btn" type="button" name="start-button" value="long break">				
-		</div>
 				
 	</div>
 
