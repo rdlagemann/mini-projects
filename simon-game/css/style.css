@@ -7,6 +7,13 @@ html, body{
 *{
 	box-sizing: border-box;
 }
+
+h1 {
+	color: gray;
+	letter-spacing: 2px;
+	text-align: center;
+}
+
 .main-frame{
 	display: flex;
 	justify-content: center;
