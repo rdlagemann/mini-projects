@@ -2,6 +2,6 @@
 
 [wip]free code camp project
 
-pair programming with [lagemanngui](github.com/lagemanngui)
+Pair programming with [lagemanngui](https://github.com/lagemanngui)
 
 
