@@ -44,10 +44,7 @@
 		waitingPlayerInput = false;
 	}
 
-	function finishGame () {
-		resetControllers();
-		updateDisplay('0');
-	}
+	
 
 	function playError () {
 		// TODO: play error sound
@@ -55,16 +52,25 @@
 	} 
 
 	function updateDisplay (value) {
+		console.log('updating display');
 		if (value === 'error') {
-			let oldValue = seqDisplay.innerText;
+			let oldValue = strictMode ? '00' : seqDisplay.innerText;
 			playError();
 			setTimeout(function () {
 				seqDisplay.innerText = oldValue;
 			}, 500);
 		}
 		else {
+			
 			seqDisplay.innerText = (value < 10) ? '0' + value : value;
 		}
+	}
+
+	function finishGame () {
+		resetControllers();
+		updateDisplay(0);
+		currentSeq.length = 0;
+		startButton.disabled = false;
 	}
 
 	function runNewTurn () {	
@@ -148,6 +154,7 @@
 
 			console.log('miss!');
 			updateDisplay('error');
+			inputIterator = 0;
 
 			// stirct mode will end the game immediately
 			if (strictMode) {
