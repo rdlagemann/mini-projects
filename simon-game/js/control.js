@@ -2,10 +2,12 @@
 	var MAX_TURNS = 20,
 		waitingPlayerInput = false,
 		inputIterator = 0,
+		strictMode = false,
 		currentSeq = [], // current game sequence
 		seqDisplay = document.getElementById('seqDisplay'),
 		colors = Array.from(document.querySelectorAll('.simon')),
 		startButton = document.getElementById('startButton'),
+		strictButton = document.getElementById('strictButton'),
 		sounds = {
 			'greenButton': new Audio('https://s3.amazonaws.com/freecodecamp/simonSound1.mp3'),
 			'redButton': new Audio('https://s3.amazonaws.com/freecodecamp/simonSound2.mp3'),
@@ -14,42 +16,76 @@
 		}
 
 
-	colors.forEach( function(element) {
-		
-		element.onclick = simonClick;
-
+	colors.forEach( function(element) {	
+		element.onclick = simonClick; 
 	});
 
-
 	startButton.onclick = function () { 
-
-		runTurn();
-
+		runNewTurn(); 
 	};
+
+	strictButton.onclick = function () {
+		runStrictMode(this);
+		strictMode = !strictMode;
+	}
 
 	/*	
 	
 	Function Definitions 
 
 	 */
+	
+	function runStrictMode (button) {
+		button.classList.toggle('strict-button__active');
+	}
 
-	function runTurn () {	
+	function resetControllers () {
+		inputIterator = 0;
+		waitingPlayerInput = false;
+	}
+
+	function finishGame () {
+		resetControllers();
+		updateDisplay('0');
+	}
+
+	function playError () {
+		// TODO: play error sound
+		seqDisplay.innerText = '!!';
+	} 
+
+	function updateDisplay (value) {
+		if (value === 'error') {
+			let oldValue = seqDisplay.innerText;
+			playError();
+			setTimeout(function () {
+				seqDisplay.innerText = oldValue;
+			}, 500);
+		}
+		else {
+			seqDisplay.innerText = (value < 10) ? '0' + value : value;
+		}
+	}
+
+	function runNewTurn () {	
 		if(currentSeq.length >= MAX_TURNS) {
 			console.log('you win, goodbye');
+			finishGame();
 			return;
 		}	
 
-		let last = false,
-			i = 0,
+		let i = 0,
 			intervalID;
+
+		startButton.disabled = true;
+
+		resetControllers();
 
 		/* adds new step in final sequence */
 		currentSeq.push(Math.floor(Math.random() * 4));	
-		// handle one digit number
-		seqDisplay.innerText = currentSeq.length;
-		if (seqDisplay.innerText.length === 1) {
-			seqDisplay.innerText = '0'+ seqDisplay.innerText;
-		}
+		
+		updateDisplay(currentSeq.length);
+		
 		//debug
 		console.log(currentSeq);
 
@@ -70,44 +106,72 @@
 	}
 
 
-	function lightSwitch (light) {	
-		if(light){
-			light.classList.toggle("off");		
-			light.classList.toggle("on");
+	function lightSwitch (lightElement) {	
+		if(lightElement){
+			lightElement.classList.toggle("off");		
+			lightElement.classList.toggle("on");
 		}	
 	}
 
 
-	function playLight (light) {
+	function playLight (lightElement) {
 		let intervalID,
-			button = light;
+			button = lightElement;
 
-		lightSwitch(light);
-		console.log(light);
-
+		lightSwitch(lightElement);
+		
 		intervalID = setTimeout( function () {
 
-			lightSwitch(light);
+			lightSwitch(lightElement);
 
-			sounds[light.id].play();
+			sounds[lightElement.id].play();
 
 			clearInterval(intervalID);
 
 		}, 300);
-
-
 	}
 
 	function checkHit (color, guess) {
 		return (color === guess) ? true : false;
 	}
 
-	function endTurn () {
-		inputIterator = 0;
-		waitingPlayerInput = false;
-		console.log('end turn');
-	}
 
+	function endTurn (hit, button) {
+		let seqIsOver = inputIterator >= currentSeq.length;
+
+		if (hit) {
+			console.log('hit!');
+			playLight(button);
+			// will run all the steps again + the new one			
+		}
+		else {
+
+			console.log('miss!');
+			updateDisplay('error');
+
+			// stirct mode will end the game immediately
+			if (strictMode) {
+				console.log('error at ' + button.id);
+
+				finishGame();
+
+				console.log('end game');
+
+				return;
+			}
+
+		}
+
+		if(seqIsOver){
+			setTimeout(function (){
+				console.log('current seq ends');
+				// run new turn
+				runNewTurn();
+
+			}, 500);			
+		}				
+		
+	}
 
 
 	function simonClick () {
@@ -118,38 +182,12 @@
 
 		let lightToGuess = colors[currentSeq[inputIterator]],
 			hit = checkHit(this.id, lightToGuess.id),
-			seqIsOver;
+			button = this;
 
-
-		playLight(this);
 		
 		inputIterator += 1;
 
-		seqIsOver = inputIterator >= currentSeq.length;
-
-		if (hit){
-			console.log('hit!');
-			if(seqIsOver){
-				setTimeout(function (){
-					runTurn();
-					return;
-				}, 500);
-				
-			}
-			
-		}
-		else {
-			console.log('error at ' + this.id);
-			endTurn();
-			return;
-		}		
-
-		if (seqIsOver){
-			console.log('current seq ends');
-			endTurn();
-			return;
-		}
-		
+		endTurn(hit, button)
 	}
 
 
