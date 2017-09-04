@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico|Quicksand');
 
 html, body{
+	text-align: center;
 	font-family: "Quicksand", sans-serif;
 	background: url(../img/sayagata-400px.png);
 	padding: 0;
@@ -15,13 +16,13 @@ html, body{
 }
 
 footer {
-	min-width: 100%;
 	text-align: center;
-	position: fixed;
-	bottom: 0;
-	background-color: #212121;
-	color: #95a5a6;
-	padding: 12px;
+	display: inline-block;
+	border-radius: 50px;
+	background-color: #2c3e50;
+	margin-top: 16px;
+	color: #ecf0f1;
+	padding: 12px 26px 12px 26px;
 	word-spacing: 2px;
 }
 
@@ -50,7 +51,7 @@ button:focus {
 	font-family: "Pacifico", cursive;
 	font-size:46px;
 	text-align: center;
-	color: white;
+	color: #ecf0f1;
 	font-weight: normal;
 	margin: 0;
 	margin-bottom: 12px;

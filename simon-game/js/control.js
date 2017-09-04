@@ -62,7 +62,6 @@
 	} 
 
 	function updateDisplay (value) {
-		console.log('updating display');
 		if (value === 'error') {
 			let oldValue = strictMode ? '00' : seqDisplay.innerText;
 			playError();
@@ -86,7 +85,7 @@
 
 	function runNewTurn () {	
 		if(currentSeq.length >= MAX_TURNS) {
-			console.log('you win, goodbye');
+			window.alert('AMAZING! You win the Simon Game! Congrats! ;)');
 			finishGame();
 			return;
 		}	
@@ -102,9 +101,6 @@
 		currentSeq.push(Math.floor(Math.random() * 4));	
 		
 		updateDisplay(currentSeq.length);
-		
-		//debug
-		console.log(currentSeq);
 
 		intervalID = setInterval( function () {
 
@@ -157,35 +153,23 @@
 		let seqIsOver = inputIterator >= currentSeq.length;
 
 		if (hit) {
-			console.log('hit!');
-			playLight(button);
-			// will run all the steps again + the new one			
+			playLight(button);			
 		}
 		else {
 
-			console.log('miss!');
 			updateDisplay('error');
 			inputIterator = 0;
 
-			// stirct mode will end the game immediately
 			if (strictMode) {
-				console.log('error at ' + button.id);
-
 				finishGame();
-
-				console.log('end game');
-
 				return;
 			}
 
 		}
 
-		if(seqIsOver){
+		if (seqIsOver) {
 			setTimeout(function (){
-				console.log('current seq ends');
-				// run new turn
 				runNewTurn();
-
 			}, 500);			
 		}				
 		
@@ -194,14 +178,13 @@
 
 	function simonClick () {
 		if (!waitingPlayerInput) {
-			console.log('wait your turn!');
+			window.alert('Sir, please, wait your turn.');
 			return;
 		}
 
 		let lightToGuess = colors[currentSeq[inputIterator]],
 			hit = checkHit(this.id, lightToGuess.id),
 			button = this;
-
 		
 		inputIterator += 1;
 
