@@ -4,10 +4,12 @@
 		inputIterator = 0,
 		strictMode = false,
 		currentSeq = [], // current game sequence
+		mainFrame = document.querySelector('.main-frame'),
 		seqDisplay = document.getElementById('seqDisplay'),
 		colors = Array.from(document.querySelectorAll('.simon')),
 		startButton = document.getElementById('startButton'),
 		strictButton = document.getElementById('strictButton'),
+		restartButton = document.getElementById('restartButton'),
 		sounds = {
 			'greenButton': new Audio('https://s3.amazonaws.com/freecodecamp/simonSound1.mp3'),
 			'redButton': new Audio('https://s3.amazonaws.com/freecodecamp/simonSound2.mp3'),
@@ -29,6 +31,10 @@
 		strictMode = !strictMode;
 	}
 
+	restartButton.onclick = function () {
+		finishGame();
+	}
+
 	/*	
 	
 	Function Definitions 
@@ -48,6 +54,10 @@
 
 	function playError () {
 		// TODO: play error sound
+		mainFrame.classList.add('shake-it');
+		setTimeout(function () {
+			mainFrame.classList.remove('shake-it');
+		}, 400);
 		seqDisplay.innerText = '!!';
 	} 
 
@@ -71,6 +81,7 @@
 		updateDisplay(0);
 		currentSeq.length = 0;
 		startButton.disabled = false;
+
 	}
 
 	function runNewTurn () {	

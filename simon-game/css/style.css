@@ -1,21 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Quicksand');
+
 html, body{
-	font-family: "Arial";
+	font-family: "Quicksand", sans-serif;
+	background: url(../img/sayagata-400px.png);
+	padding: 0;
+	padding-top: 10px;
+	margin: 0;
 	background-color: #ecf0f1;
 	color: #2c3e50;
-	filter: brightness(100%);
 }
+
 *{
 	box-sizing: border-box;
 }
 
-/*h1 {
-	color: gray;
-	letter-spacing: 2px;
-	text-align: center;
-}*/
-
 footer {
+	min-width: 100%;
 	text-align: center;
+	position: fixed;
+	bottom: 0;
+	background-color: #212121;
+	color: #95a5a6;
+	padding: 12px;
+	word-spacing: 2px;
+}
+
+a {
+	text-decoration: none;
+	color: #3498db
+}
+
+a:visited{
+	text-decoration: none;
+}
+
+a:hover {
+	color: #2ecc71;
+}
+button {
+	font-family: "Quicksand", sans-serif;
+}
+button:hover {
+	cursor: pointer;
+}
+button:focus {
+	outline: 0;
+}
+.simon-center h1 {
+	font-family: "Pacifico", cursive;
+	font-size:46px;
+	text-align: center;
+	color: white;
+	font-weight: normal;
+	margin: 0;
+	margin-bottom: 12px;
+	padding: 0;	
+	text-shadow: 0 2px 2px black;
+	transform: rotate(-10deg);
+
 }
 
 .main-frame{
@@ -46,61 +88,79 @@ footer {
 	position: absolute;
 	z-index: 9999;
 	padding: 10px;
-	box-shadow: 5px 5px 0 rgba(106, 90, 205, 0.3), 
-	-5px -5px 0 rgba(106, 90, 205, 0.3),
-	-5px 5px 0 rgba(238, 130, 238, 0.3),
-	5px -5px 0 rgba(238, 130, 238, 0.3);
+	box-shadow: 0 0 0 8px rgba(106, 0, 205, 0.2); 
 }
 
-.simon-center h1 {
-	margin: 0;
-	margin-bottom: 18px;
-	padding: 0;
-	color: white;
-	font-size: 20px;
-	text-align: center;
-	letter-spacing: 2px;
-	font-weight: bold;
-}
 
 .button-area{
 	display: flex;
-	/*justify-content: space-between;*/
-
+	margin-bottom: 10px;
 }
 
-.simon-center .start-button,
-.simon-center .strict-button{
-	/*position: absolute;
-	margin-left: 75px;
-	margin-top: 90px;*/
+.button-area *{
+	margin-right: 8px;
+}
 
-	margin: 2px;
+.start-button,
+.strict-button{	
 	padding: 5px;
 	border: none;
 	border-radius: 5px;
 	letter-spacing: 1px;
-	background-color: #ecf0f1;
-	border-right: 3px solid white;
-	border-left: 3px solid white;	
 }
 
-.simon-center .start-button:hover,
-.simon-center .strict-button:hover {
-	cursor: pointer;
+.restart-button {
+	border-radius: 3px;
+	background-color: white;
+}
+
+.start-button {
+	color: #2ecc71;
+	font-size: 16px;
+	border: none;
+	border-radius: 0;
+	border-bottom: 2px solid #2ecc71;
+	background-color: transparent;
+}
+
+.start-button:hover {
+	color: white;
+	border-bottom: 5px solid #2ecc71;
+	transition: all .1s linear;	
+}
+
+.strict-button {
+	color: #f1c40f;
+	font-size: 16px;
+	border: none;
+	border-radius: 0;
+	border-bottom: 2px solid #f1c40f;
+	background-color: transparent;
+}
+
+.strict-button:hover {
+	color: white;
+	transition: all .1s linear;	
+}
+
+.restart-button {
+	color: #3498db;
+	font-size: 16px;
+	border: none;
+	background-color: transparent;
+}
+
+.restart-button:hover {
+	color: white;
+	transition: all .1s linear;	
 }
 
 .strict-button__active {
-	background-color: #202020 !important;
 	color: white;
-	border-color: RosyBrown !important;
-	transition: all .6s ease-out;
-}
-
-.seq-display,
-.strict-button,
-.start-button {
-	
+	background-color: #e74c3c;
+	font-size: bold;
+	border-radius: 5px;
+	transition: all .1s ease-out;
 }
 
 .seq-display {
@@ -154,5 +214,30 @@ footer {
 .off{
 	transition: filter 300ms ease-out;
 	filter: brightness(100%);
+}
 
+/* shake animation thanks to https://css-tricks.com/snippets/css/shake-css-keyframe-animation/ */
+.shake-it {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }
