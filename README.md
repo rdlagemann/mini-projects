@@ -9,5 +9,6 @@ A collection of little solutions and experiments through time and space.
 * [wikipedia-viewer](/wikipedia-viewer) (HTML/CSS/JS) - Search and preview wikipedia contents.
 * [small-calculator](/small-calculator) (HTML/CSS/JS) - A basic JavaScript calculator.
 * [pomodoro-clock](/pomodoro-clock) (HTML/CSS/JS) - Motivational pomodoro clock.
+* [simon-game](/simon-game) (HTML/CSS/JS) - All-digital Simon.
 
 > Work in progress
