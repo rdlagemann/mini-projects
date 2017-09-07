@@ -1,38 +1,67 @@
-( function () {
-	console.log('script loaded');
+( function () { 
+	"use strict";
 
 	const gameBoard = {
-			table: document.getElementById('tttTable'),
-			matrix: [],
-			tableToMatrix: HTMLTableToMatrix,
-			initEmptyMatrix: initEmptyMatrix,
-			init: function () {
-				this.initEmptyMatrix(3, 3);
-				this.tableToMatrix();
-			},
-			checkWin: function () { console.log('check col, check line, check diag')}
-		}	
+		table: document.getElementById('tttTable'),
+		matrix: [],
+		tableToMatrix: HTMLTableToMatrix,
+		initEmptyMatrix: initEmptyMatrix,
+		init: function () {
+			this.initEmptyMatrix(3, 3);
+			this.tableToMatrix();
+		},
+		checkWin: function () { console.log('check col, check line, check diag')}
+	}
+
+	const weaponChooser = {
+		buttons: Array.from(document.querySelectorAll('.weapon-button')),
+		configButtons: configWeaponButtons		
+	}
 
 	const player = {
 		weapon: undefined
 	}
 
+
 	const playButton = document.getElementById('playButton');
 	playButton.onclick = function () {
 		console.log('lets play!');
 	}
-	
-	
-	gameBoard.init();
 
+
+	/* Initialize game properties */	
+	gameBoard.init();
+	weaponChooser.configButtons( player );
+
+	//debug
 	console.log(gameBoard.matrix);
 
 
 
 
-	/* HELPER FUNCTIONS */
+	/* FUNCTIONS */
+
+	function configWeaponButtons ( player ) {
+		"use strict";
+		this.buttons.forEach( function(elem, _, arr) {
+			let currElem = elem;
+			elem.onclick = function () {
+				arr.forEach( function ( elem, _, arr) {
+					if ( elem === currElem ) {
+						elem.classList.add('weapon__selected');
+						player.weapon = elem.innerText;
+					}
+					else {
+						elem.classList.remove('weapon__selected');
+					}
+				})
+				console.log(player.weapon);
+			}
+		})
+	}
 
 	function HTMLTableToMatrix () {	
+		"use strict";
 		if (!this.table || !this.matrix) {
 			return undefined;
 		}	
@@ -52,6 +81,7 @@
 
 
 	function initEmptyMatrix (rowLen, colLen) {
+		"use strict";
 		let mat = this.matrix;
 		if(mat.constructor === Array) {
 			for(var i = 0; i < rowLen; i += 1) {

@@ -12,11 +12,23 @@
 <body>
 
 <div class="main-frame">
-	<h1>Tic Tac Toe</h1>
+	<h1> 
+		<span class="lil-title">tic tac toe</span> 
+		<span class="big-title"> DUNGEON</span>
+	</h1>
 
-	<h3>Choose Your Weapon:</h3>
-	[X] or O
+	
+	<div class="weapon-area">
+		<h3>choose your weapon:</h3>
+		<div class="weapon-choose">
+			<div id="xWeapon" class="weapon-button weapon__selected">X</div>
+			<div id="oWeapon" class="weapon-button">O</div>				
+		</div>
+		
+	</div>
+
 	<button id="playButton" type="button">play</button>
+	
 	<table id="tttTable">
 		<tr>
 			<td id="c00">x</td>
