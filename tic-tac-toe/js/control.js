@@ -1,6 +1,30 @@
 ( function () { 
 	"use strict";
 
+	/* Weapon 'class' and methods */
+	function Weapon (value, drawClass) {
+		this.value = value;
+		this.drawClass =  drawClass;
+	}
+	Weapon.prototype.setValue  = function ( value ) {
+		value = value.toLowerCase();
+		if (value === 'x' || value === 'o') {
+			this.value = value;
+		}
+		else {
+			value = undefined;
+		}
+	};
+
+	Weapon.prototype.getValue = function () {
+		return this.value;
+	};
+
+	Weapon.prototype.draw = function () {
+		this.classList.toggle(this.drawClass);
+	}
+
+	/* game objects */
 	const gameBoard = {
 		table: document.getElementById('tttTable'),
 		matrix: [],
@@ -18,6 +42,18 @@
 		configButtons: configWeaponButtons		
 	}
 
+	const oW = new Weapon('o', 'oClass');
+	const xW = new Weapon('x', 'xClass');
+
+	extend(xWeapon, xW);
+	extend(oWeapon, oW);
+
+	console.dir(xWeapon);
+	
+	xWeapon.draw();
+	oWeapon.draw();
+
+
 	const player = {
 		weapon: undefined
 	}
@@ -26,6 +62,7 @@
 	const playButton = document.getElementById('playButton');
 	playButton.onclick = function () {
 		console.log('lets play!');
+		document.getElementById('tttTable').classList.remove('hide');
 	}
 
 
@@ -37,9 +74,12 @@
 	console.log(gameBoard.matrix);
 
 
-
-
 	/* FUNCTIONS */
+	function extend (target, extension) {
+		for (var key in extension) {
+			target[key] = extension[key];
+		}
+	}
 
 	function configWeaponButtons ( player ) {
 		"use strict";
@@ -49,7 +89,7 @@
 				arr.forEach( function ( elem, _, arr) {
 					if ( elem === currElem ) {
 						elem.classList.add('weapon__selected');
-						player.weapon = elem.innerText;
+						player.weapon = elem.value;
 					}
 					else {
 						elem.classList.remove('weapon__selected');
