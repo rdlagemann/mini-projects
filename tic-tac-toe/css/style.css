@@ -108,9 +108,6 @@ table tr th:last-child {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	/*background: url(../img/dark_brick_wall.png);*/
-
-
 }
 
 .weapon-choose {
@@ -163,6 +160,19 @@ table tr th:last-child {
 	min-height: 50px;
 }
 
+.noWeaponClass {
+	background-color: rgba(255, 0, 0, 0.3);
+	/*background-image: none;*/
+}
+
 .hide {
 	display: none;
+}
+
+.game-area {
+	text-align: center;
+}
+
+.game-area .score-area {
+	text-align: left;
 }

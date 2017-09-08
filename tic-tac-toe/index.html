@@ -15,7 +15,7 @@
 	<h1> 
 		<span class="lil-title">tic tac toe</span> 
 		<span class="big-title"> DUNGE<span class="skull-title"></span>N</span> 
-		<span class="other-title">of Eternal Draw </span> 
+		<span class="other-title">of Eternal Tie </span> 
 	</h1>
 
 	
@@ -29,26 +29,37 @@
 	<button id="playButton" class="play-button" type="button">PLAY</button>
 	</div>
 
+	<div id="gameArea" class="game-area hide">
+
+	<div class="score-area">
+		<div> You:</div>
+		<div> UNDEAD AI:</div>
+		
+	</div>
+
+		<table id="tttTable">
+			<tr>
+				<td id="c00"></td>
+				<td id="c01"></td>
+				<td id="c02"></td>
+			</tr>
+			<tr>
+				<td id="c10"></td>
+				<td id="c11"></td>
+				<td id="c12"></td>
+			</tr>
+			<tr>
+				<td id="c20"></td>
+				<td id="c21"></td>
+				<td id="c22"></td>
+			</tr>
+
+		</table>
+
+		<button type="button" class="play-button"> reset </button>
+			
+	</div>
 	
-	<table id="tttTable" class="hide">
-		<tr>
-			<td id="c00">x</td>
-			<td id="c01">o</td>
-			<td id="c02">o</td>
-		</tr>
-		<tr>
-			<td id="c10">x</td>
-			<td id="c11">x</td>
-			<td id="c12">o</td>
-		</tr>
-		<tr>
-			<td id="c20">o</td>
-			<td id="c21">x</td>
-			<td id="c22">x</td>
-		</tr>
-
-	</table>
-
 	
 </div>
 
