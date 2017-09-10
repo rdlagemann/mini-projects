@@ -2,6 +2,7 @@
 	"use strict";
 
 	/* Weapon 'class' and methods */
+
 	function Weapon (value) {
 		this.value;
 		this.drawClass;
@@ -21,19 +22,8 @@
 		this.classList.add(this.drawClass);
 	}
 
-	/* game objects */
 
-	const gameManager = {
-		humamTurn: true //humam player aways first
-	}
-
-
-	/* create weapons objects */
-
-	let cells = Array.from(document.querySelectorAll('td'));
-	cells.forEach(function (element) {
-		extend( element, new Weapon() );
-	});
+	/* create game modules  */
 
 	const weaponChooser = ( function () {
 		let xWeapon, oWeapon;
@@ -78,7 +68,14 @@
 
 	}());
 
-	const gameboardModule = ( function () {
+
+	/* extend table cells */
+	let cells = Array.from(document.querySelectorAll('td'));
+	cells.forEach(function (element) {
+		extend( element, new Weapon() );
+	});
+
+	const gameBoard = ( function () {
 		/* pvt */
 
 		let table, boardCells = [];
@@ -123,12 +120,33 @@
 
 	}());
 
+	let Player = function ( wpn ) {
+		let weapon = new Weapon( wpn ); 
+		let score = 0;
+
+		return {
+			weapon: weapon,
+			score: score
+		}
+	};
+
+	const humam = new Player('o');
+	const cpu = new Player();
+
+	// call after player choose a weapon
+	cpu.configWeapon = function ( player ) {
+		this.weapon.setValue(
+				(player.weapon.value === 'x') ? 
+				'o' : 'x'
+			);
+	};
+
 	weaponChooser.init( document );
-	gameboardModule.init( document );
+	gameBoard.init( document );
 
 	
 
-	/* FUNCTIONS */
+	/* helper functions */
 	function extend (target, extension) {
 		for (var key in extension) {
 			target[key] = extension[key];
