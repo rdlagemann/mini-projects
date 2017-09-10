@@ -1,4 +1,4 @@
-( function () { 
+( function ( ) { 
 	"use strict";
 
 	/* Weapon 'class' and methods */
@@ -19,6 +19,9 @@
 	};
 
 	Weapon.prototype.draw = function () {
+		this.classList.remove( 'xClass' );
+		this.classList.remove( 'oClass' );
+		this.classList.remove( 'noWeaponClass' );
 		this.classList.add(this.drawClass);
 	}
 
@@ -28,10 +31,14 @@
 	const weaponChooser = ( function () {
 		let xWeapon, oWeapon;
 		let weapons = [];
+		let player;
+		
+		let pubInit = function ( context, human ) {
+			player = human;
 
-		let pubInit = function ( document ) {
-			xWeapon = document.getElementById('xWeapon');
-			oWeapon = document.getElementById('oWeapon');
+			/* just two weapon types, so let's hard code */
+			xWeapon = context.getElementById('xWeapon');
+			oWeapon = context.getElementById('oWeapon');
 
 			weapons.push( xWeapon );
 			weapons.push( oWeapon );
@@ -57,8 +64,17 @@
 		
 
 		function getWeapon () {
-			console.log(this);
-			return this;
+			var selected = this;
+
+			selected.classList.add( 'weapon__selected' );
+
+			weapons.forEach( function (element) {
+				if (element !== selected) {
+					element.classList.remove( 'weapon__selected' );
+				}
+			});
+
+			player.weapon.setValue( selected.getValue() );
 		}
 
 
@@ -69,68 +85,89 @@
 	}());
 
 
-	/* extend table cells */
-	let cells = Array.from(document.querySelectorAll('td'));
-	cells.forEach(function (element) {
-		extend( element, new Weapon() );
-	});
+	
 
 	const gameBoard = ( function () {
 		/* pvt */
 
-		let table, boardCells = [];
+		let table, cells;
 
 		let checkWin = function () {
-			console.log('cheking win');
-		};
-
-		let HTMLtableToArray = function () {
-			let curr;
-			for (let i = 0; i < table.rows.length; i += 1) {
-				curr = table.rows[i];
-				for (let j = 0; j < curr.cells.length; j += 1) {
-					boardCells.push(curr.cells[j].getValue());
-				}
-			}		
+			console.log('cheking win in "cells" ');
 		};
 
 		/* pub */
 
-		let pubInit = function ( document ) {
-			table = document.getElementById('tttTable');
-			HTMLtableToArray();
+		let pubInit = function ( context, player ) {
+			table = context.getElementById('tttTable');
+			cells = context.querySelectorAll('td');
+			/* extend table cells */
+			Array.from(context.querySelectorAll('td')).forEach(function (element) {
+				extend( element, new Weapon() );
+				element.draw();
+				element.onclick = function () {
+					this.setValue( player.weapon.getValue() );
+					this.draw();
+				}
+			});
+
 
 		};
+
+		function pubReset ( context ) {
+			Array.from(cells).forEach(function (element) {
+				element.setValue();
+				element.draw();
+			});
+		}
 
 		function pubPlayWeapon ( index, weapon ) {
 			console.log('play a weapon');
 			checkWin();
 		};
 
-		function pubDrawBoard () {
-			console.log('drawing board');
+		function pubDrawBoard ( context ) {
+			Array.from(cells).forEach(function (element) {
+				element.draw();
+			});
 		};
 
 		return {
 			init: pubInit,
 			play: pubPlayWeapon,
-			draw: pubDrawBoard
+			draw: pubDrawBoard,
+			reset: pubReset
 		}
-
 
 	}());
 
-	let Player = function ( wpn ) {
+	/* human and cpu configs */
+	var playerProto = {
+		reset: function () {
+			this.score = 0;
+			this.weapon = new Weapon('x');
+			if (typeof this.configWeapon === 'function') {
+				this.weapon.setValue('o');
+			}
+		}
+	}
+
+	function Player ( wpn ) {
 		let weapon = new Weapon( wpn ); 
 		let score = 0;
 
-		return {
-			weapon: weapon,
-			score: score
-		}
+		function F(){};
+		F.prototype = playerProto; 
+
+		let player = new F();
+		player.weapon = weapon;
+		player.score = score;
+
+		return player;
+
 	};
 
-	const humam = new Player('o');
+	const human = new Player('x');
 	const cpu = new Player();
 
 	// call after player choose a weapon
@@ -141,8 +178,30 @@
 			);
 	};
 
-	weaponChooser.init( document );
-	gameBoard.init( document );
+	/* button configs */
+	const gameArea = document.getElementById('gameArea'),
+		  playButton = document.getElementById('playButton'),
+		  weaponArea = document.getElementById('weaponArea');
+
+	let resetButton = document.getElementById('resetButton');
+		resetButton.onclick = function () {
+			human.reset();
+			cpu.reset();
+			gameBoard.reset( document );
+			gameArea.classList.add( 'hide' );
+			weaponArea.classList.remove( 'hide' );
+
+		}
+
+	playButton.onclick = function () {
+		weaponArea.classList.add( 'hide' );
+		gameArea.classList.remove( 'hide' );
+		gameBoard.init( document, human );
+		
+	}
+
+
+	weaponChooser.init( document, human );
 
 	
 
