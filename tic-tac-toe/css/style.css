@@ -53,6 +53,11 @@ table tr th:last-child {
 	border-right: 0;
 }
 
+h1 {	
+	background-image: radial-gradient( circle closest-side, rgba(140, 56, 48, 0.2), rgba(0,0,0,0));
+
+}
+
 .lil-title {
 	font-family: 'Kaushan Script', cursive;
 	font-size: 28px;

@@ -1,4 +1,4 @@
-( function ( window, undefined ) { 
+(function (window, undefined) { 
 	
 	/* Weapon 'class' and methods */
 
@@ -27,12 +27,12 @@
 
 	/* create game modules  */
 
-	const weaponChooser = ( function () {
+	const weaponChooser = (function () {
 		let xWeapon, oWeapon;
 		let weapons = [];
 		let player;
 		
-		let pubInit = function ( context, human ) {
+		let pubInit = function (context, human) {
 			player = human;
 
 			/* just two weapon types, so let's hard code */
@@ -42,9 +42,9 @@
 			weapons.push( xWeapon );
 			weapons.push( oWeapon );
 
-			weapons.forEach( function ( element ) {
+			weapons.forEach( function (element) {
 				extend( element, new Weapon() );
-				element.onclick = getWeapon;
+				element.addEventListener('click', getWeapon);
 			});
 
 			xWeapon.setValue('x');
@@ -86,13 +86,57 @@
 
 	
 
-	const gameBoard = ( function () {
+	const gameBoard = (function () {
 		/* pvt */
 
 		let table, cells, currentPlayer, humanPlayer, cpuPlayer;
 
-		let checkWin = function () {
-			console.log('cheking win in "cells" ');
+	
+
+		let checkLines = function ( arr ) {
+			console.log('checking lines ');
+			let arrTarget = Array.from(arr),
+			    len = arrTarget.length,
+			    cols = Math.sqrt(arr.length),
+			    sub = [];
+
+			for (let i = 0; i < len; i += cols) {
+	    		sub = [...arrTarget].slice(i, i + cols); 
+	    		
+	    		res = sub.reduce((a,b) => (a.value === b.value && a.value !== "noWeapon") ? a : false);
+	    		
+	    		if ( res ) {
+	    			console.log('win at ' + i/3);
+		    		return i/3;
+				} 
+			}
+
+			
+
+			return false;
+	    };
+		
+
+		let checkColumns = function () {
+			console.log('check columns');
+
+		};
+
+		let checkDiagonals = function () {
+			console.log('check diagonals');
+		};
+
+		let checkWin = function ( cells ) {
+			if ( checkLines( cells ) ){
+				console.log('win in lines');
+				return true;
+			}
+			else if ( checkColumns( cells ) ){
+				return true;
+			}
+			else if ( checkDiagonals( cells) ){
+				return true;
+			}
 		};
 
 		/* pub */
@@ -112,7 +156,7 @@
 
 				element.draw();
 				
-				element.onclick = playWeapon;
+				element.addEventListener('click', playWeapon);
 			});
 
 
@@ -125,43 +169,58 @@
 			});
 		}
 
-		function pubPlayWeapon ( index, weapon ) {
+		function pubPlayWeapon (index, weapon) {
 			console.log('play a weapon');
-			checkWin();
+			checkWin( cells );
 		};
 
 		function cpuPlay ( ) {
+
+			// TODO: Implement AI
+
+			let freeCells = Array.from(cells).filter( element => element.value === 'noWeapon' );
+
+			if (freeCells.length <= 1) {
+				return;
+			}				
+
 			let len = cells.length,
 				index = 0,
-				isValid = false;
+				isValid = false
 
-			let prevent = 0;
 	
 			while (!isValid) {
-				prevent += 1;
-
-				if (prevent >= 100) {
-					break;
-				}
-
-				index = Math.floor( Math.random() * 9 );
-
-				if (cells[index].value === 'noWeapon') {
-					isValid = true;
-					cells[index].setValue( cpuPlayer.weapon.value );
-					cells[index].draw();
-				}
-			}
-
 			
+				index = Math.floor( Math.random() * freeCells.length );
+
+				if (freeCells[index].value === 'noWeapon') {
+					isValid = true;
+					freeCells[index].setValue( cpuPlayer.weapon.value );
+					freeCells[index].draw();
+					//checkWin();
+				}
+			}			
 
 		};
 
 		function playWeapon () {
-			this.setValue( humanPlayer.weapon.value );
-			this.draw();
+			if (this.value === 'noWeapon') {
+				this.setValue( humanPlayer.weapon.value );
+				this.draw();
 
-			cpuPlay();
+				if( checkWin( cells ) ){
+					console.log('win');
+					return;
+				}
+				else{
+					//cpuPlay();	
+				}
+				
+			}
+			else {
+				console.log('invalid move');
+			}
+			
 		}
 
 		function setPlayer ( player ) {
@@ -181,10 +240,6 @@
 	var playerProto = {
 		reset: function () {
 			this.score = 0;
-			this.weapon = new Weapon('x');
-			if (typeof this.configWeapon === 'function') {
-				this.weapon.setValue('o');
-			}
 		}
 	}
 
@@ -221,23 +276,23 @@
 		  weaponArea = document.getElementById('weaponArea'),
 		  resetButton = document.getElementById('resetButton');
 
-	resetButton.onclick = function () {
+	resetButton.addEventListener('click', function () {
 		human.reset();
 		cpu.reset();
 		gameBoard.reset( window );
 		gameArea.classList.add( 'hide' );
 		weaponArea.classList.remove( 'hide' );
 
-	}
+	});
 
-	playButton.onclick = function () {
+	playButton.addEventListener('click', function () {
 		weaponArea.classList.add( 'hide' );
 		gameArea.classList.remove( 'hide' );
 
 		cpu.configWeapon( human );
 		gameBoard.init( window, human, cpu);
 		
-	}
+	});
 
 
 	weaponChooser.init( window, human );
