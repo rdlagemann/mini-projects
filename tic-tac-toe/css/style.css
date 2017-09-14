@@ -166,8 +166,12 @@ h1 {
 }
 
 .noWeaponClass {
-	background-color: rgba(255, 0, 0, 0.3);
+	
 	/*background-image: none;*/
+}
+.noWeaponClass:hover {
+	background-color: rgba(255, 0, 0, 0.3);
+	cursor: pointer;
 }
 
 .hide {

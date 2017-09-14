@@ -1,33 +1,14 @@
 (function (window, undefined) { 
-	
-	/* Weapon 'class' and methods */
 
-	function Weapon (value) {
-		this.value;
-		this.drawClass;
-		this.setValue( value );
+	// from tttHelper.js
+	if (tttHelper === undefined) {
+		alert("Sorry, an error ocurred when loading the page.");
+		throw new Error('tttHelper.js not found');
 	}
-	Weapon.prototype.setValue  = function ( value ) {
-		value = (value) ? value.toLowerCase() : undefined;
-		this.value = (value === 'x' || value === 'o') ? value : 'noWeapon';
- 		this.drawClass = this.value + 'Class'; // change css class with proper drawing
-	};
-
-	Weapon.prototype.getValue = function () {
-		return this.value;
-	};
-
-	Weapon.prototype.draw = function () {
-		this.classList.remove( 'xClass' );
-		this.classList.remove( 'oClass' );
-		this.classList.remove( 'noWeaponClass' );
-		this.classList.add(this.drawClass);
-	}
-
 
 	/* create game modules  */
-
-	const weaponChooser = (function () {
+	const weaponChooser = (function() {
+		// not initialized variables
 		let xWeapon, oWeapon;
 		let weapons = [];
 		let player;
@@ -84,59 +65,30 @@
 	}());
 
 
-	
-
-	const gameBoard = (function () {
+	const gameBoard = (function() {
 		/* pvt */
 
 		let table, cells, currentPlayer, humanPlayer, cpuPlayer;
-
-	
-
-		let checkLines = function ( arr ) {
-			console.log('checking lines ');
-			let arrTarget = Array.from(arr),
-			    len = arrTarget.length,
-			    cols = Math.sqrt(arr.length),
-			    sub = [];
-
-			for (let i = 0; i < len; i += cols) {
-	    		sub = [...arrTarget].slice(i, i + cols); 
-	    		
-	    		res = sub.reduce((a,b) => (a.value === b.value && a.value !== "noWeapon") ? a : false);
-	    		
-	    		if ( res ) {
-	    			console.log('win at ' + i/3);
-		    		return i/3;
-				} 
-			}
-
-			
-
-			return false;
-	    };
 		
+		const weaponEquality = function (a, b) {
+			return (a.value === b.value && a.value !== "noWeapon") ? a : false;
+		}
 
-		let checkColumns = function () {
-			console.log('check columns');
+		const checkLines = tttHelper.checkLines;
+		const checkColumns = tttHelper.checkColumns;
 
-		};
-
-		let checkDiagonals = function () {
-			console.log('check diagonals');
-		};
-
-		let checkWin = function ( cells ) {
-			if ( checkLines( cells ) ){
+		let checkWin = function (cells) {
+			if ( checkLines( cells, weaponEquality ).win ){
 				console.log('win in lines');
 				return true;
 			}
-			else if ( checkColumns( cells ) ){
-				return true;
+			else if ( checkColumns( cells, weaponEquality ).win ){
+				console.log('win in columns');
+			 	return true;
 			}
-			else if ( checkDiagonals( cells) ){
-				return true;
-			}
+			// else if ( checkDiagonals( cells) ){
+			// 	return true;
+			// }
 		};
 
 		/* pub */
@@ -175,7 +127,6 @@
 		};
 
 		function cpuPlay ( ) {
-
 			// TODO: Implement AI
 
 			let freeCells = Array.from(cells).filter( element => element.value === 'noWeapon' );
@@ -214,8 +165,7 @@
 				}
 				else{
 					//cpuPlay();	
-				}
-				
+				}				
 			}
 			else {
 				console.log('invalid move');
@@ -226,7 +176,6 @@
 		function setPlayer ( player ) {
 			currentPlayer = player;
 		}
-
 
 		return {
 			init: pubInit,
