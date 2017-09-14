@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Kaushan+Script|MedievalSharp');
+@import url('https://fonts.googleapis.com/css?family=Princess+Sofia|MedievalSharp');
 html {
 	font-family: 'MedievalSharp', cursive;
 	min-height:100%;
@@ -56,14 +56,16 @@ table tr th:last-child {
 h1 {	
 	background-image: radial-gradient( circle closest-side, rgba(140, 56, 48, 0.2), rgba(0,0,0,0));
 
+
 }
 
 .lil-title {
-	font-family: 'Kaushan Script', cursive;
-	font-size: 28px;
+	font-family: 'Princess Sofia', cursive;
+	font-size: 32px;
 	font-weight: normal;
 	display: block;
 	text-align: center;
+
 }
 
 .big-title {
@@ -76,9 +78,6 @@ h1 {
 	/*margin-right: 50px;	*/
 }
 
-.d {
-	font-size: 80px;
-}
 .other-title {
 	color: #7f8c8d;
 	letter-spacing: 3px;
@@ -102,8 +101,8 @@ h1 {
 }
 
 .weapon-area h3 {
-	font-family: 'Kaushan Script', cursive;
-	font-size: 22px;
+	font-family: 'Princess Sofia', cursive;
+	font-size: 28px;
 	font-weight: normal;
 	letter-spacing: 3px;
 	color: #e74c3c;
@@ -136,33 +135,43 @@ h1 {
 
 .weapon-button:hover {
 	cursor: pointer;
-	background-color: rgba(255, 255, 255, 0.3);
-	transition: all .3s linear;
 }
 
-.play-button {
+button {
+	font-family: 'MedievalSharp', cursive;
+}
+
+.play-button:hover {
+	cursor: pointer;
+	background-color: #e74c3c;
+	box-shadow: 0 0 150px rgba(0,0,0,0.5);	
+	transition: all .3s ease-out;
+}
+
+.play-button {	
 	background-color: #e67e22;
+	color: #ecf0f1;		
 	border-radius: 30px;
 	border: none;
 	padding: 10px;
 	font-size: 20px;
-	color: #ecf0f1;
 	margin-top: 40px;
-	box-shadow: 0 3px 0 rgba(220, 20, 60, 0.5);
+	box-shadow: 0 0 80px 1px rgba(0, 20, 20, 0.5);
+	transition: all .2s linear;
 }
 
 .oClass {
 	background-image: url(../img/defense.svg);
 	background-repeat: no-repeat;
-	min-width: 50px;
-	min-height: 50px;
+	min-width: 60px;
+	min-height: 60px;
 }
 
 .xClass {
 	background-image: url(../img/swords.svg);
 	background-repeat: no-repeat;
-	min-width: 50px;
-	min-height: 50px;
+	min-width: 60px;
+	min-height: 60px;
 }
 
 .noWeaponClass {

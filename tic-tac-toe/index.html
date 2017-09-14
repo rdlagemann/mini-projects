@@ -20,7 +20,7 @@
 
 	
 	<div id="weaponArea" class="weapon-area">
-		<h3>choose your weapon:</h3>
+		<h3>- choose your weapon -</h3>
 		<div class="weapon-choose">
 			<div id="xWeapon" class="weapon-button weapon__selected"></div>
 			<div id="oWeapon" class="weapon-button"></div>		
@@ -32,8 +32,8 @@
 	<div id="gameArea" class="game-area hide">
 
 	<div class="score-area">
-		<div> You:</div>
-		<div> CPU:</div>
+		<div> You: <span  id="humanScore" class="score">0</span></div>
+		<div> CPU:<span  id="cpuScore" class="score">0</span></div>
 		
 	</div>
 
@@ -68,8 +68,12 @@
 	<div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 </footer>
 
-<script src="js/tttHelper.js"></script>
+
 <script src="js/Weapon.js"></script>
+<script src="js/tttHelper.js"></script>
+<script src="js/weaponChooser.js"></script>
+<script src="js/gameBoard.js"></script>
 <script src="js/control.js"></script>
+
 </body>
 </html>

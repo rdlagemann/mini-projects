@@ -1,4 +1,6 @@
 /* Weapon 'class' and methods */
+
+
 const Weapon = function wpn(value) {
 	this.value;
 	this.drawClass;
@@ -8,7 +10,7 @@ const Weapon = function wpn(value) {
 Weapon.prototype.setValue  = function(value) {
 	value = (value) ? value.toLowerCase() : undefined;
 	this.value = (value === 'x' || value === 'o') ? value : 'noWeapon';
-		this.drawClass = this.value + 'Class'; // change css class with proper drawing
+	this.drawClass = this.value + 'Class'; // change css class with proper drawing
 };
 
 Weapon.prototype.getValue = function() {
@@ -19,8 +21,12 @@ Weapon.prototype.draw = function () {
 	this.classList.remove( 'xClass' );
 	this.classList.remove( 'oClass' );
 	this.classList.remove( 'noWeaponClass' );
-	this.classList.add(this.drawClass);
+	this.classList.add( this.drawClass );
 };
 
+// represent how a comparsion between two Weapon elements will be made
+const weaponEquality = function equality(a, b) {
+	return (a.value === b.value && a.value !== "noWeapon") ? a : false;
+}
 
 	

@@ -1,46 +1,82 @@
+const extend = function ext (target, extension) {
+	for (var key in extension) {
+		target[key] = extension[key];
+	}
+}
+
 const tttHelper = (function() {
 
-	const isValidLine = function(index, i, cols) {
-		return (index - i) < cols;
+	const isLine = function(index, i, cols) {
+		return (index < (cols + i * cols)) && (index >= (i * cols)) ;
 	};
 
-	const isValidColumn = function(index, i, cols) {
+	const isColumn = function(index, i, cols) {
 		return ((index - i) % cols) === 0;
 	};
 
-	const check = function(orientationCheck, arr, compare) {
+	const isMainDiag = function (index, i, cols) {
+		let middle = ((cols**2) - 1)/2;
+		return (index % 2 === 0) && (index % middle === 0);		
+	};
+
+	const isInverseDiag = function (index, i, cols) {
+		let middle = ((cols**2) - 1)/2;
+		return (index % 2 === 0) && !(index % middle === 0);		
+	}
+
+	const defaultCompare = function (a, b) { 
+		return a === b;
+	};
+
+	const check = function(orientationCheck, _diag, compare, arr) {
 		if (!typeof orientationCheck === 'function') {
 			throw  new TypeError(' orientationCheck must be a function' );
-		}
-
-		const cols = Math.sqrt(arr.length), // to keep it more general
-			defultCompare = function (a, b) { return a === b };
-
-		let res = false;
-		
-		compare = compare || defultCompare;
-
-		for (let i = 0; i < cols; i += 1) {
-    		res = Array.from( arr )
-    		.filter((_, index) => orientationCheck(index, i, cols))
-    		.reduce((a,b) => compare(a, b));
-    		
-    		if (res) {    		
-	    		return {win:true, where: i}; // TODO: -1 ?
-			} 
 		}		
 
-		return {win:false, where: -1};
+		let subArr = false;			
+
+		return function(compare, arr) {
+			
+			let result = {
+				win: false,
+				where: -1
+			}
+
+			compare = compare || defaultCompare;
+			
+			const cols = Math.sqrt(arr.length);
+			const howMany = (_diag == "diagonal") ? 1 : cols;
+
+			for (let i = 0; i < cols; i += 1) {			
+	    		subArr = Array.from( arr )
+	    		.filter((_, index) => orientationCheck(index, i, cols))
+	    		.reduce((a,b) => compare(a, b));
+	    		
+	    		if (subArr) {    		
+	    			result.win = true;
+	    			result.where = i;
+	    			break;
+				} 
+			}		
+
+			return result;
+
+			}
+		
     };
 
-    const pubCheckLines = check.bind({}, isValidLine);
-    const pubCheckColumns = check.bind({}, isValidColumn);
-    const pubCheckDiagonals = check.bind({}, isValidLine);
+    const pubCheckLines = check.call({}, isLine, "line");
+    const pubCheckColumns = check.call({}, isColumn, "column");
+    const pubCheckMainDiagonal = check.call({}, isMainDiag, "diagonal");
+    const pubCheckInverseDiagonal = check.call({}, isInverseDiag, "diagonal");
 
 
     return {
+    	name: 'tttModule',
     	checkLines: pubCheckLines,
-    	checkColumns: pubCheckColumns
+    	checkColumns: pubCheckColumns,
+    	checkMainDiagonal: pubCheckMainDiagonal,
+    	checkInverseDiagonal: pubCheckInverseDiagonal
     }
 
 })();
