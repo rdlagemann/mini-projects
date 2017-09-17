@@ -5,7 +5,7 @@ const weaponChooser = (function() {
 	let weapons = [];
 	let player;
 	
-	const pubInit = function (context, human) {
+	const pubInit = function( context, human ) {
 		player = human;
 
 		/* just two weapon types, so let's hard code */
@@ -15,13 +15,13 @@ const weaponChooser = (function() {
 		weapons.push( xWeapon );
 		weapons.push( oWeapon );
 
-		weapons.forEach( function (element) {
+		weapons.forEach( function( element ) {
 			extend( element, new Weapon() );
-			element.addEventListener('click', getWeapon);
+			element.addEventListener( 'click', getWeapon );
 		});
 
-		xWeapon.setValue('x');
-		oWeapon.setValue('o');
+		xWeapon.setValue( 'x' );
+		oWeapon.setValue( 'o' );
 
 		draw();
 
@@ -29,18 +29,18 @@ const weaponChooser = (function() {
 
 
 	const draw = function() {
-		weapons.forEach( function (element) {				
+		weapons.forEach( function( element ) {				
 			element.draw();
 		});
 	}
 	
 
-	const getWeapon = function () {
+	const getWeapon = function() {
 		var selected = this;
 
 		selected.classList.add( 'weapon__selected' );
 
-		weapons.forEach( function (element) {
+		weapons.forEach( function( element ) {
 			if (element !== selected) {
 				element.classList.remove( 'weapon__selected' );
 			}
