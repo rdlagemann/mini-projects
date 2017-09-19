@@ -46,7 +46,7 @@ const weaponChooser = (function() {
 			}
 		});
 
-		player.weapon.setValue( selected.getValue() );
+		player._weapon.setValue( selected.getValue() );
 	}
 
 	return {

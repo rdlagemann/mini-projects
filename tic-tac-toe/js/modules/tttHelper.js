@@ -15,13 +15,13 @@ const tttHelper = (function() {
 	};
 
 	const isMainDiag = function(index, i, cols) {
-		let middle = ((cols**2) - 1)/2;
+		let middle = ((cols**2) - 1) / 2;
 		return (index % 2 === 0) && (index % middle === 0);		
 	};
 
 	const isInverseDiag = function(index, i, cols) {
-		let middle = ((cols**2) - 1)/2;
-		return (index % 2 === 0) && !(index % middle === 0);		
+		let middle = ((cols**2) - 1) / 2;
+		return (index % 2 === 0) && (!(index % middle === 0) || index === middle);		
 	};
 
 	const defaultCompare = function(a, b) { 
@@ -48,12 +48,12 @@ const tttHelper = (function() {
 			compare = compare || defaultCompare;
 			
 			const cols = Math.sqrt(arr.length);
-			const howMany = (/diagonal./i.test(orientation)) ? 1 : cols;
+			const howMany = (/diagonal.*/gi.test(orientation)) ? 1 : cols;
 
 			for (let i = 0; i < cols; i += 1) {			
 	    		subArr = Array.from( arr )
-	    		.filter( (_, index) => orientationCheck(index, i, cols) )
-	    		.reduce( (a,b) => compare(a, b) );
+	    		.filter( (_, index) => orientationCheck( index, i, cols ) )
+	    		.reduce( (a,b) => compare( a, b ) );
 	    		
 	    		if (subArr) {    		
 	    			result.win = true;

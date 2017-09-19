@@ -54,6 +54,22 @@ const gameBoard = (function() {
 
 		if(checkTest.win) {
 			console.log(currentPlayer._name + ' WIN at ' + checkTest.where._index + " " + checkTest.where._orientation);
+			let winner;
+			if( currentPlayer._name === 'human') {
+				winner = humanScore;
+			}
+			else {
+				winner = cpuScore;
+			}
+
+			winner.classList.add('zoomer');
+
+			setTimeout(function() {
+				winner.classList.remove('zoomer');
+
+			}, 200);
+
+
 			result.win = true;
 			result.shouldReset = true;
 
@@ -80,8 +96,8 @@ const gameBoard = (function() {
 	};
 
 	const pubReset = function reset() {
-		cpuScore.innerText = 0;
-		humanScore.innerText = 0;
+		cpuScore.innerText = ' 0';
+		humanScore.innerText = ' 0';
 		clearBoard();
 	}
 
@@ -113,7 +129,7 @@ const gameBoard = (function() {
 				result = checkWin( cells );
 
 				if (result.win) {
-					cpuScore.innerText = parseInt(cpuScore.innerText) + 1;
+					cpuScore.innerText = ' ' + (parseInt(cpuScore.innerText) + 1);
 					clearBoard();
 				}
 				else if (result.shouldReset) {
@@ -134,7 +150,7 @@ const gameBoard = (function() {
 			let result = checkWin( cells );
 
 			if (result.win) {
-				humanScore.innerText = parseInt(humanScore.innerText) + 1;
+				humanScore.innerText = ' ' + (parseInt(humanScore.innerText) + 1);
 				clearBoard();
 
 				return;

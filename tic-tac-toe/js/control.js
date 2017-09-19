@@ -27,17 +27,21 @@ const cpu = new Player('cpu', 'o');
 	const gameArea = document.getElementById('gameArea'),
 		  playButton = document.getElementById('playButton'),
 		  weaponArea = document.getElementById('weaponArea'),
-		  resetButton = document.getElementById('resetButton');
+		  resetButton = document.getElementById('resetButton'),
+		  footer = document.querySelector('footer');
 
 	resetButton.addEventListener('click', function () {
 		gameBoard.reset( window );
 		gameArea.classList.add( 'hide' );
 		weaponArea.classList.remove( 'hide' );
+		footer.classList.remove( 'hide' );
 	});
 
 	playButton.addEventListener('click', function () {
 		weaponArea.classList.add( 'hide' );
 		gameArea.classList.remove( 'hide' );
+		footer.classList.add( 'hide' );
+
 
 		cpu.configWeaponBasedOn( human );
 		gameBoard.init( window, human, cpu);
